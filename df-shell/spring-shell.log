@@ -1,0 +1,15 @@
+// dataflow 1.2.0.M1 log opened at 2016-04-04 20:20:44
+module list
+module register --name lukes-logging-sink --type sink --uri 'com.example:producer:0.0.1-SNAPSHOT'
+module list
+stream create --name log-time --definition "time | lukes-logging-sink" 
+// [failed] stream deploy --name log-time
+// [failed] module unregister --name  lukes-logging-sink
+// [failed] module register --name lukes-logging-sink --type sink --uri 'com.example:producer'
+// [failed] module register --name lukes-logging-sink --type sink --uri 'com.example:producer'
+// dataflow 1.2.0.M1 log opened at 2016-04-04 20:31:05
+help 
+help module register
+module register --uri com.example:consumer:0.0.1-SNAPSHOT --name joshs-logging-consumer --type sink
+stream create --definition 'http | joshs-logging-consumer' --name joshlog
+// [failed] stream deploy --name joshlog
